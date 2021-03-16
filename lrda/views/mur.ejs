@@ -1,0 +1,91 @@
+<%- include('layout/header', {user: user}); %>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-8">
+            <h2>Mon mur</h2>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+    <br>
+    <hr><br>
+    <h3>Nouvelle publication</h3><br>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group ml-3">
+                    <label><h5>Type de publication</h5></label>
+                    <div id="file" class="btn btn-sm btn-secondary ml-5">
+                        <i class="fas fa-image"></i> Image
+                        <input type="file" accept="image/png, image/jpeg" id="photo" onchange="loadImage(event)" />
+                    </div>
+                    <div id="file" class="btn btn-sm btn-secondary ml-3">
+                        <i class="fas fa-video"></i> Video
+                        <input type="file" accept="video/mp4" id="video" onchange="loadVideo(event)" />
+                    </div>
+                    <div id="file" class="btn btn-sm btn-secondary ml-3">
+                        <i class="fas fa-music"></i> Musique
+                        <input type="file" accept="audio/mp3" id="music" onchange="loadMusic(event)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-4" id="media">
+
+            </div>
+        </div>
+        <div class="form-group ml-3">
+            <label for="exampleInputPassword1"><h5>Description</h5></label>
+            <textarea class="form-control" id="description" rows="5"></textarea>
+        </div>
+        <button onclick="addArticle()" class="btn btn-success ml-3">Envoyer</button>
+        <br><br>
+        <h3>Mes publications</h3><br>
+        <% user.publications.forEach(function(publication){ %>
+            <div class="card mb-5">
+                <% if (publication.type == "image"){ %>
+                    <img class="card-img-top" src=<%= "images/publications/" + publication.content %> alt="Card image cap">
+                <% } else if (publication.type == "video"){ %>
+                    <video id="my-video" class="video-js" controls preload="auto" style="width:100%; height: 600px" poster="images/play-button.png" data-setup="{}">
+                        <source src=<%= "images/publications/" + publication.content %> type="video/mp4" />
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a
+                            web browser that
+                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                        </p>
+                    </video>
+                <% } else if (publication.type == "music"){ %>
+                    <audio
+                    controls
+                    style="width: 90%;margin:20px 5% 0 5%;"
+                    src=<%= "images/publications/" + publication.content %>>
+                        Your browser does not support the
+                        <code>audio</code> element.
+                    </audio>
+                <% } %>
+                    <div class="card-body">
+                    <p class="card-text"><%= publication.description %></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <% if (publication.liked == true) { %>
+                                <div class="col-2">
+                                    <button id="like" class="btn btn-sm btn-outline-danger" onclick=<%= "dislike(\"" + publication._id + "\")" %>>Retirer like</button>
+                                </div>
+                            <% } else { %>
+                                <div class="col-2">
+                                    <button id="like" class="btn btn-sm btn-outline-success" onclick=<%= "like(\"" + publication._id + "\")" %>>Liker</button>
+                                </div>
+                                <% } %>
+                            <div class="col-7">
+                                <p class="card-text ml-3">Nombre de likes : <b class="ml-5" id="nbLikes"><%= publication.likes %></b></p>
+                            </div>
+                            <div class="col-3">
+                                <p class="card-text ml-3">Nombre de vues : <b class="ml-5"><%= publication.views %></b></p>
+                            </div>
+                        </div>
+                    </div>
+
+              </div>
+        <% }); %>
+    <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+    <script src='/javascripts/mur.js'></script>
+    <%- include('layout/footer', {user: user}); %>

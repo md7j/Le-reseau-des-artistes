@@ -1,0 +1,36 @@
+<%- include('layout/header', {user: user}); %>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-8">
+            <h2>Mes amis</h2>
+        </div>
+        <div class="col-3">
+            <div class="input-group rounded">
+                <input type="search" id="search" class="form-control rounded shadow-none" placeholder="Chercher un ami"
+                    aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+                <div id="autocomplete"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr><br>
+    <div class="d-flex flex-row bd-highlight mb-3">
+        <% user.friends.forEach(function(user){ %>
+            <div class="card mx-2" style="width: 18rem;">
+                <img class="card-img-top" style="height:250px" alt="Card image cap" src=<%= "images/profiles/" + user.image %>>
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <%= user.username %>
+                    </h5>
+                    <a href=<%= "/mur/" + user.email %> class="btn btn-sm btn-success">Voir son mur</a>
+                    <a href="#" class="btn btn-sm btn-danger">Supprimer</a>
+                </div>
+            </div>
+            <% }); %>
+    </div>
+    </div>
+    <script src='/javascripts/friends.js'></script>
+    <%- include('layout/footer', {user: user}); %>

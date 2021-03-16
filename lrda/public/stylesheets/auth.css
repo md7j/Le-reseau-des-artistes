@@ -1,0 +1,49 @@
+body {
+    font-family: source sans pro,sans-serif;
+    background-color: #e75348;
+    height: 100%;
+}
+
+.row {
+    background-color: white;
+    height: 620px;
+    width: 90%;
+    max-width: 870px;
+    margin: 100px 100px 0 100px;
+    border-radius: 3px;
+}
+
+.col {
+    padding: 40px 30px;
+}
+
+.btn-group {
+    float: right;
+}
+
+#login, #register {
+    margin: 100px 20px;
+}
+
+/* enable absolute positioning */
+.fa-input { 
+    position: relative; 
+}
+
+.fa-input .la {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  left:  0px;
+}
+
+.fa-input input  { padding-left:  30px; }
+
+#presentation {
+    margin: 0px 0 0 0;
+    text-align:center;
+}
+
+#presentation img {
+    width: 200px;
+}

@@ -1,0 +1,51 @@
+
+body {
+  background-color: white;
+}
+
+.navbar {
+  background-color: #e44d3a;
+}
+
+.dropdown-menu {
+  background-color: #a13932;
+}
+
+.dropleft {
+  border-left: 1px solid #f2f2f2;
+}
+
+.banner_button {
+  border-left: 1px solid #f2f2f2;
+  padding: 0px 20px 0px 20px;
+}
+
+.banner_button_text {
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+.banner_button_text:hover {
+  color: #c0b9b9;
+  text-decoration: none;
+}
+
+#profil_thumbnail {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+#profil_name {
+  font-size: 1.5em;
+  color: #f2f2f2;
+}
+
+#profil_name:hover {
+  color: #c0b9b9;
+}
+
+.container {
+  padding: 50px 50px 50px 50px;
+  background-color: #f2f2f2;
+}
